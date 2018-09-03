@@ -8,49 +8,48 @@
 
 import UIKit
 
-
-
-class ViewController: UIViewController {
+class ViewController: UIViewController, LegoKitDataSourceUsable {
+    enum SectionType: SectionEnum {
+        case top
+        case bottom
+    }
 
     @IBOutlet weak var tableView: UITableView!
-    var dataSource: LegoKitDataSource!
-    
+    var dataSource = LegoKitDataSource<SectionType>()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        dataSource = LegoKitDataSource(sections: [self.sections(idx: 0)])
-    }
+        dataSource.items = { sectionType -> LegoKitDataSource<SectionType>.Section in
+            var items = [LegoKitModel]()
+            
+            func addItem(title: String) {
+                var titleModel = LKTitleCellModel()
+                titleModel.title = title
+                items.append(titleModel)
+            }
 
+            switch  sectionType {
+            case .top:
+                addItem(title: "제목 추가")
+                addItem(title: "제목 추가2")
+                addItem(title: "제목 추가3")
+                return LegoKitDataSource.Section(items: items)
+            default:
+                
+                addItem(title: "하단 내용")
+                return LegoKitDataSource.Section(items: items)
+                
+            }
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-    
-    func sections(idx: Int) -> LegoKitDataSource.Section {
-        
-        var items = [LegoKitModel]()
-        
-        func addItem(title: String) {
-            var titleModel = LKTitleCellModel()
-            titleModel.title = title
-            items.append(titleModel)
-        }
-        
-
-        addItem(title: "제목 추가")
-        addItem(title: "제목 추가2")
-        addItem(title: "제목 추가3")
-        var buttonModel = LKTitleButtonCellModel()
-        
-        
-        items.append(buttonModel)
-        
-        
-        let section = LegoKitDataSource.Section(items: items)
-        return section
-    }
+  
 
 }
 
@@ -69,14 +68,7 @@ extension ViewController: UITableViewDataSource {
     
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = dataSource.cell(tableView: tableView, indexPath: indexPath)
-
-//        if let atcell = cell as? ATBaseCell {
-//            print(atcell)
-//        }
-        
-
-        return cell
+        return dataSource.cell(tableView:tableView, indexPath: indexPath)
     }
     
 }

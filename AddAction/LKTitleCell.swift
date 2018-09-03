@@ -9,24 +9,18 @@
 import UIKit
 
 struct LKTitleCellModel: LegoKitModel {
-    typealias Cell = LKTitleCell
-    
-    var identifiers: [String] = ["LKTitleCell2","LKTitleCell"]
+    var cellType: UITableViewCell.Type = LKTitleCell.self
     var title: String?
     
 }
 
-class LKTitleCell: LKBaseCell {
-    
-
+class LKTitleCell: UITableViewCell, LKCellProcotol {
 
     @IBOutlet weak var titleLabel: UILabel!
     
-    override func render(by model: LegoKitModel) {
-        super.render(by: model)
+     func render(by model: LKTitleCellModel) {
+    
+            titleLabel.text = model.title
         
-        if let titleModel = model as? LKTitleCellModel {
-            titleLabel.text = titleModel.title
-        }
     }
 }

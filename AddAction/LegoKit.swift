@@ -8,20 +8,28 @@
 
 import UIKit
 
-class LegoKitDataSource {
+class LegoKitDataSource<S: SectionEnum>: NSObject {
+typealias Items<S> = (S) -> Section
     class Section {
         var items: [LegoKitModel]
         init(items: [LegoKitModel]) {
             self.items = items
         }
     }
-    
-    var sections: [Section]
-    
-    init(sections: [Section]) {
-        self.sections = sections
+
+    var items: Items<S>? {
+        didSet {
+            updateSection()
+        }
+    }
+    var sections = [Section]()
+    func updateSection() {
+        print("updateSection")
+        sections = S.sections.compactMap{ items?(S(rawValue: $0)) }
+
     }
     
+
     func numberOfRows(in section: Int) -> Int {
         if section < sections.count {
             let section = sections[section]
@@ -45,44 +53,50 @@ class LegoKitDataSource {
         return nil
     }
     
-    func cell(tableView: UITableView, indexPath: IndexPath) -> LKBaseCell {
-        guard let item = item(at: indexPath) else { return LKBaseCell() }
-        
-        let cell = item.identifiers.first(where: { id in tableView.dequeueReusableCell(withIdentifier: id) != nil
-        }).map { id in
-            tableView.dequeueReusableCell(withIdentifier: id, for: indexPath)
-            } as? LKBaseCell
-        
-        cell?.render(by: item)
-        return cell ?? LKBaseCell()
+    func cell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        guard let item = item(at: indexPath) else { return UITableViewCell() }
+        let cell = tableView.dequeueReusableCell(withIdentifier: item.identifier, for: indexPath)
+        (cell as? LKCellPreRender)?.preRender(by: item)
+        return cell
     }
+    
+
     
 }
 
 protocol LegoKitModel {
-    var identifiers: [String] { get }
+    var cellType: UITableViewCell.Type { get }
     func addActions(action: ()->())
+
 }
 
 extension LegoKitModel {
-    var identifiers: [String] {
-        get {
-            //todo remove
-            return [""]
-        }
+
+    var identifier: String {
+       return "\(cellType)"
     }
     func addActions(action: () -> ()) { }
-}
-
-
-
-protocol LKCellProcotol: class {
-    func render(by model: LegoKitModel)
-}
-
-extension LKCellProcotol where Self: UITableViewCell {
     
+   
 }
+
+protocol LKCellPreRender {
+     func preRender(by model: LegoKitModel)
+}
+
+protocol LKCellProcotol: LKCellPreRender where Self: UITableViewCell {
+    associatedtype Model: LegoKitModel
+    func render(by model: Model)
+}
+
+extension LKCellProcotol {
+    func preRender(by model: LegoKitModel) {
+        if let matchedModel = model as? Model {
+            self.render(by: matchedModel)
+        }
+    }
+}
+
 
 class ClosureSleeve {
     let closure: ()->()
@@ -103,5 +117,6 @@ extension UIControl {
         objc_setAssociatedObject(self, String(format: "[%d]", arc4random()), sleeve, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
     }
 }
+
 
 

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		28244E63210879A300364E72 /* ATKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28244E62210879A300364E72 /* ATKit.swift */; };
+		280BD4FD2115AC49009BA4B7 /* EnumCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280BD4FC2115AC49009BA4B7 /* EnumCollection.swift */; };
 		2883E1D42102255B0043CBBB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2883E1D32102255B0043CBBB /* AppDelegate.swift */; };
 		2883E1D62102255B0043CBBB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2883E1D52102255B0043CBBB /* ViewController.swift */; };
 		2883E1D92102255B0043CBBB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2883E1D72102255B0043CBBB /* Main.storyboard */; };
@@ -17,8 +17,7 @@
 		2883E1F42102255C0043CBBB /* AddActionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2883E1F32102255C0043CBBB /* AddActionUITests.swift */; };
 		2883E20221024A1F0043CBBB /* LegoKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2883E20121024A1F0043CBBB /* LegoKit.swift */; };
 		2883E20421024D820043CBBB /* LKTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2883E20321024D820043CBBB /* LKTitleCell.swift */; };
-		2883E2062102508B0043CBBB /* LKBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2883E2052102508B0043CBBB /* LKBaseCell.swift */; };
-		2883E2082102F9B50043CBBB /* LKTitleButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2883E2072102F9B50043CBBB /* LKTitleButtonCell.swift */; };
+		28E7AA3D2115F85400935C64 /* LegoKitDataSourceUsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E7AA3C2115F85400935C64 /* LegoKitDataSourceUsable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		28244E62210879A300364E72 /* ATKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATKit.swift; sourceTree = "<group>"; };
+		280BD4FC2115AC49009BA4B7 /* EnumCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumCollection.swift; sourceTree = "<group>"; };
 		2883E1D02102255B0043CBBB /* AddAction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AddAction.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2883E1D32102255B0043CBBB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2883E1D52102255B0043CBBB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -55,8 +54,7 @@
 		2883E1F52102255C0043CBBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2883E20121024A1F0043CBBB /* LegoKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegoKit.swift; sourceTree = "<group>"; };
 		2883E20321024D820043CBBB /* LKTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LKTitleCell.swift; sourceTree = "<group>"; };
-		2883E2052102508B0043CBBB /* LKBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LKBaseCell.swift; sourceTree = "<group>"; };
-		2883E2072102F9B50043CBBB /* LKTitleButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LKTitleButtonCell.swift; sourceTree = "<group>"; };
+		28E7AA3C2115F85400935C64 /* LegoKitDataSourceUsable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegoKitDataSourceUsable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,10 +108,9 @@
 				2883E1D32102255B0043CBBB /* AppDelegate.swift */,
 				2883E1D52102255B0043CBBB /* ViewController.swift */,
 				2883E20121024A1F0043CBBB /* LegoKit.swift */,
-				2883E2052102508B0043CBBB /* LKBaseCell.swift */,
+				28E7AA3C2115F85400935C64 /* LegoKitDataSourceUsable.swift */,
 				2883E20321024D820043CBBB /* LKTitleCell.swift */,
-				2883E2072102F9B50043CBBB /* LKTitleButtonCell.swift */,
-				28244E62210879A300364E72 /* ATKit.swift */,
+				280BD4FC2115AC49009BA4B7 /* EnumCollection.swift */,
 				2883E1D72102255B0043CBBB /* Main.storyboard */,
 				2883E1DA2102255C0043CBBB /* Assets.xcassets */,
 				2883E1DC2102255C0043CBBB /* LaunchScreen.storyboard */,
@@ -271,13 +268,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28E7AA3D2115F85400935C64 /* LegoKitDataSourceUsable.swift in Sources */,
 				2883E1D62102255B0043CBBB /* ViewController.swift in Sources */,
 				2883E20421024D820043CBBB /* LKTitleCell.swift in Sources */,
 				2883E1D42102255B0043CBBB /* AppDelegate.swift in Sources */,
-				2883E2082102F9B50043CBBB /* LKTitleButtonCell.swift in Sources */,
-				28244E63210879A300364E72 /* ATKit.swift in Sources */,
+				280BD4FD2115AC49009BA4B7 /* EnumCollection.swift in Sources */,
 				2883E20221024A1F0043CBBB /* LegoKit.swift in Sources */,
-				2883E2062102508B0043CBBB /* LKBaseCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
