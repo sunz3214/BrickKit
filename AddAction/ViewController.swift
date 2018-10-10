@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController, LegoKitDataSourceUsable {
-    enum SectionType: SectionEnum {
+    enum SectionType: CaseIterable {
         case top
         case bottom
     }

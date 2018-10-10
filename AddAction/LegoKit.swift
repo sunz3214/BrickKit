@@ -8,8 +8,8 @@
 
 import UIKit
 
-class LegoKitDataSource<S: SectionEnum>: NSObject {
-typealias Items<S> = (S) -> Section
+class LegoKitDataSource<SectionType: CaseIterable>: NSObject {
+typealias Items<SectionType> = (SectionType) -> Section
     class Section {
         var items: [LegoKitModel]
         init(items: [LegoKitModel]) {
@@ -17,16 +17,17 @@ typealias Items<S> = (S) -> Section
         }
     }
 
-    var items: Items<S>? {
+    var items: Items<SectionType>? {
         didSet {
             updateSection()
         }
     }
     var sections = [Section]()
     func updateSection() {
-        print("updateSection")
-        sections = S.sections.compactMap{ items?(S(rawValue: $0)) }
 
+        sections = SectionType.allCases.compactMap {
+            self.items?($0)
+        }
     }
     
 
