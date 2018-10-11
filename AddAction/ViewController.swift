@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController, LegoKitDataSourceUsable {
-    enum SectionType: CaseIterable {
+    enum SectionType: SectionEnum {
         case top
         case bottom
     }
@@ -19,6 +19,12 @@ class ViewController: UIViewController, LegoKitDataSourceUsable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        SectionType.allCases.forEach {
+            guard let value = $0.value else {return }
+            print(value)
+        }
+        
         // Do any additional setup after loading the view, typically from a nib.
         dataSource.items = { sectionType -> LegoKitDataSource<SectionType>.Section in
             var items = [LegoKitModel]()

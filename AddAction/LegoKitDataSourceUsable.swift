@@ -9,6 +9,17 @@
 import Foundation
 
 protocol LegoKitDataSourceUsable: class {
-    associatedtype SectionType: CaseIterable
+    associatedtype SectionType: SectionEnum
     var dataSource: LegoKitDataSource<SectionType>{ get }
 }
+
+protocol SectionEnum: Hashable, CaseIterable {
+    
+}
+
+extension SectionEnum {
+    var value: Int? {
+        return Self.allCases.enumerated().first(where: { $0.element == self })?.offset
+    }
+}
+
